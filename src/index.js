@@ -104,6 +104,14 @@ app.put("/account", verifyIfExistsAccountCPF, (request, response) => {
   return response.status(201).send();
 });
 
+app.delete("/account", verifyIfExistsAccountCPF, (request, response) => {
+  const { customer } = request;
+
+  customers.splice(customer, 1);
+
+  return response.status(204).send();
+})
+
 function verifyIfExistsAccountCPF(request, response, next){
   const { cpf } = request.headers
 
